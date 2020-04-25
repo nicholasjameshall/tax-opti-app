@@ -1,1 +1,63 @@
-<p>main-form works!</p>
+<mat-card class="medium-size mat-elevation-z2">
+  <mat-card-title>Please enter your information below</mat-card-title>
+
+  <mat-vertical-stepper [linear]="true" #stepper>
+
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your basic details</ng-template>
+
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput id="name" type="text" formControlName="name">
+        </mat-form-field> <br>
+
+        <mat-form-field>
+          <mat-label>Residency</mat-label>
+          <mat-select id="residency" formControlName="residency">
+            <mat-option *ngFor="let country of countryCodeMap" [value]="country.code">{{ country.name }}</mat-option>
+          </mat-select>
+        </mat-form-field> <br>
+
+        <mat-form-field>
+          <mat-label>Citizenship</mat-label>
+          <mat-select id="citizenship" formControlName="citizenship">
+            <mat-option *ngFor="let country of countryCodeMap" [value]="country.code">{{ country.name }}</mat-option>
+          </mat-select>
+        </mat-form-field> <br>
+      </form>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your not-so-basic details</ng-template>
+
+        <mat-form-field>
+          <mat-label>Nickname</mat-label>
+          <input matInput id="name" type="text" formControlName="nickname">
+        </mat-form-field>
+
+      </form>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Confirmation</ng-template>
+      <p>Name: {{ firstFormGroup.controls['name'].value }}</p>
+      <p>Residency: {{ firstFormGroup.controls['residency'].value }}</p>
+      <p>Citizenship: {{ firstFormGroup.controls['citizenship'].value }}</p>
+      <p>Nickname: {{ secondFormGroup.controls['nickname'].value }}</p>
+      <div>
+        <button mat-raised-button (click)="getTaxAdvice(firstFormGroup.value)" color="primary">Get Tax Advice</button>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+
+
+</mat-card>

@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family:sans-serif;
+  background-color:#f1f1f1;
 }
 
 a {
@@ -23,3 +24,6 @@ app-nav-bar {
   justify-content: space-between;
   align-items: center;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
